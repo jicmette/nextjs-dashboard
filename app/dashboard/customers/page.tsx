@@ -8,18 +8,19 @@ export const metadata: Metadata = {
   title: 'Customers',
 };
 
-export default async function Page({
-  searchParams,
-}: {
+interface PageProps {
   searchParams?: {
     query?: string;
     page?: string;
   };
-}) {
+}
+
+export default async function Page({
+  searchParams,
+}: PageProps) {
+  const query = searchParams?.query || '';
+  const currentPage = Number(searchParams?.page) || 1;
   
-  const awaitedSearchParams = (await searchParams) || {};
-  const query = awaitedSearchParams.query || '';
-  const currentPage = Number(awaitedSearchParams.page) || 1;
   const customers = await fetchFilteredCustomers(query);
 
   return (
