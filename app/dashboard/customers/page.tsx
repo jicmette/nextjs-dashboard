@@ -15,12 +15,10 @@ interface PageProps {
   };
 }
 
-export default async function Page({
-  searchParams,
-}: PageProps) {
+export default async function Page({ searchParams }: PageProps) {
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
-  
+
   const customers = await fetchFilteredCustomers(query);
 
   return (
@@ -28,7 +26,7 @@ export default async function Page({
       <div className="flex w-full items-center justify-between">
       </div>
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
-        <CustomersTable customers={customers}/>
+        <CustomersTable customers={customers} />
       </Suspense>
     </div>
   );
