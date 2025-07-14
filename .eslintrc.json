@@ -1,6 +1,33 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "next/typescript"
-  ]
+    "eslint:recommended",                  
+    "plugin:@typescript-eslint/recommended" 
+  ],
+  "parser": "@typescript-eslint/parser",   
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint"                   
+  ],
+  "rules": {
+    // Disable the base ESLint rule to avoid conflicts with the TypeScript version
+    "no-unused-vars": "off",
+
+    // This is the TypeScript-aware rule for unused variables
+    "@typescript-eslint/no-unused-vars": [
+      "error", 
+      {
+        "argsIgnorePattern": "^_",           
+        "varsIgnorePattern": "^_",            
+        "caughtErrorsIgnorePattern": "^_"     
+      }
+    ],
+
+    // Optional: Recommended for good practice
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-debugger": "error"
+  }
 }

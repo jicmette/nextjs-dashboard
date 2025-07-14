@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
-import { lusitana } from '@/app/ui/fonts';
 import CustomersTable from '@/app/ui/customers/table';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { fetchFilteredCustomers } from '@/app/lib/data';
@@ -21,7 +20,7 @@ export default async function Page({
   const awaitedSearchParams = (await searchParams) || {};
   const query = awaitedSearchParams.query || '';
   const currentPage = Number(awaitedSearchParams.page) || 1;
-  const customers = await fetchFilteredCustomers(query, currentPage);
+  const customers = await fetchFilteredCustomers(query);
 
   return (
     <div className="w-full">
